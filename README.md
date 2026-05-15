@@ -1,75 +1,4 @@
-# KCSeahug--// 🌊 KC SEA HUB 🌊 //--
---// Tổng hợp: Đánh nhanh + Sea Event //--
-
-repeat task.wait() until game:IsLoaded()
-
----------------------------------------------------
--- LOADING KC HUB
----------------------------------------------------
-
-local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local UICorner = Instance.new("UICorner")
-local Title = Instance.new("TextLabel")
-local LoadingBar = Instance.new("Frame")
-local Loading = Instance.new("Frame")
-local Percent = Instance.new("TextLabel")
-
-ScreenGui.Parent = game.CoreGui
-
-Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(20,20,20)
-Frame.Position = UDim2.new(0.35,0,0.4,0)
-Frame.Size = UDim2.new(0,320,0,160)
-
-UICorner.Parent = Frame
-
-Title.Parent = Frame
-Title.BackgroundTransparency = 1
-Title.Size = UDim2.new(1,0,0,50)
-Title.Font = Enum.Font.GothamBold
-Title.Text = "🌊 KC SEA HUB"
-Title.TextColor3 = Color3.fromRGB(255,255,255)
-Title.TextSize = 24
-
-LoadingBar.Parent = Frame
-LoadingBar.BackgroundColor3 = Color3.fromRGB(45,45,45)
-LoadingBar.Position = UDim2.new(0.1,0,0.6,0)
-LoadingBar.Size = UDim2.new(0,250,0,20)
-
-Instance.new("UICorner",LoadingBar)
-
-Loading.Parent = LoadingBar
-Loading.BackgroundColor3 = Color3.fromRGB(0,170,255)
-Loading.Size = UDim2.new(0,0,1,0)
-
-Instance.new("UICorner",Loading)
-
-Percent.Parent = Frame
-Percent.BackgroundTransparency = 1
-Percent.Position = UDim2.new(0,0,0.78,0)
-Percent.Size = UDim2.new(1,0,0,30)
-Percent.Font = Enum.Font.Gotham
-Percent.Text = "Đang tải KC Hub... 0%"
-Percent.TextColor3 = Color3.fromRGB(255,255,255)
-Percent.TextSize = 18
-
-for i = 1,100 do
-   task.wait(0.03)
-
-   Loading.Size = UDim2.new(i/100,0,1,0)
-   Percent.Text = "Đang tải KC Hub... "..i.."%"
-end
-
-task.wait(1)
-ScreenGui:Destroy()
-
----------------------------------------------------
--- GUI LIBRARY
----------------------------------------------------
-
-local Library = loadstring(game:HttpGet(
-"https://raw.githubusercontent.com/shlexware/Rayfield/main/source"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Rayfield/main/source"))()
 
 local Window = Library:CreateWindow({
    Name = "🌊 KC SEA HUB",
@@ -103,21 +32,14 @@ _G.AutoSea = false
 
 Library:Notify({
    Title = "🌊 KC SEA HUB",
-   Content = "Script đã bật thành công!",
-   Duration = 5,
-   Image = 4483362458,
+   Content = "Hub đã bật thành công!",
+   Duration = 5
 })
 
 ---------------------------------------------------
--- TAB CHÍNH
+-- ĐÁNH NHANH
 ---------------------------------------------------
 
-Main:CreateParagraph({
-   Title = "✨ KC HUB",
-   Content = "Tổng hợp đánh nhanh & săn Sea Event"
-})
-
--- đánh nhanh
 Main:CreateToggle({
    Name = "⚡ Đánh Siêu Nhanh",
    CurrentValue = false,
@@ -144,7 +66,10 @@ Main:CreateToggle({
    end,
 })
 
--- auto haki
+---------------------------------------------------
+-- AUTO HAKI
+---------------------------------------------------
+
 Main:CreateToggle({
    Name = "🛡️ Tự Động Haki",
    CurrentValue = false,
@@ -170,13 +95,8 @@ Main:CreateToggle({
 -- SEA EVENT
 ---------------------------------------------------
 
-Sea:CreateParagraph({
-   Title = "🌊 Sea Event",
-   Content = "Tự động săn quái biển"
-})
-
 Sea:CreateToggle({
-   Name = "🚢 Tự Động Đi Biển",
+   Name = "🌊 Tự Động Đi Biển",
    CurrentValue = false,
 
    Callback = function(v)
@@ -199,6 +119,10 @@ Sea:CreateToggle({
    end,
 })
 
+---------------------------------------------------
+-- MUA THUYỀN
+---------------------------------------------------
+
 Sea:CreateButton({
    Name = "⛵ Mua Thuyền Guardian",
 
@@ -211,7 +135,7 @@ Sea:CreateButton({
 })
 
 ---------------------------------------------------
--- KHÁC
+-- GIẢM LAG
 ---------------------------------------------------
 
 Misc:CreateButton({
@@ -238,6 +162,10 @@ Misc:CreateButton({
    end,
 })
 
+---------------------------------------------------
+-- REJOIN
+---------------------------------------------------
+
 Misc:CreateButton({
    Name = "🔄 Vào Lại Server",
 
@@ -251,7 +179,7 @@ Misc:CreateButton({
 })
 
 ---------------------------------------------------
--- CHỐNG AFK
+-- ANTI AFK
 ---------------------------------------------------
 
 local vu = game:GetService("VirtualUser")
